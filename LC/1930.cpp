@@ -33,12 +33,38 @@ void printPair(const pair<K, V> &p);
 
 
 
+// P₃(s) = Union of {s[i] + s[j] + s[k]} for all valid indices i, j, k such that:
+// 1.  i < j < k 
+// 2. s[i] = s[k]
 
 
 class Solution {
 public:
-    int method() {
-      
+    int countPalindromicSubsequence(string s) {
+        int ct = 0;
+        int n = s.size();
+        unordered_set<string> st;
+        for (int i = 0; i < n; i++)
+        {
+            for (int k = i+2; k < n; k++)
+            {
+                if (s[i] == s[k]) {
+                    for (int j = i+1; j < k; j++)
+                    {
+                        string temp = string(1, s[i]) + string(1, s[j]) + string(1, s[k]);
+                        if (st.find(temp) == st.end()) {
+                            st.insert(temp);
+                            ct++;
+                            cout << temp << endl;
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+
+        return ct++;
     }
 };
  
@@ -50,7 +76,7 @@ int main()
 
     // vector<int> 
     // vector<vector<int> 
-    // string s
+    string s = "aabca";
     // char c
     // int k
     // double d
@@ -58,10 +84,10 @@ int main()
 
 
 
-    auto result = solution.method();
+    auto result = solution.countPalindromicSubsequence(s);
 
 
-    // cout << result << endl;
+    cout << result << endl;
 
     // printArray(result);
 
@@ -163,3 +189,5 @@ template<typename K, typename V>
 void printPair(const pair<K, V>& p) {
     cout << "{" << p.first << ", " << p.second <<"}" << endl;
 }
+
+
