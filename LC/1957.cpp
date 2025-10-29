@@ -1,8 +1,4 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define ull unsigned long long
-#define ld long double
-#define ulld unsigned long long double
 using namespace std;
 template <typename T>
 void printArray(const vector<T> &arr);
@@ -35,41 +31,53 @@ void printPair(const pair<K, V> &p);
 
 
 
-class Solution {
-public:
-    int method() {
-      
+
+
+
+
+
+
+
+
+string makeFancyString(string s) {
+
+    int lastcharcnt = 1;
+    char lastchar = s[0];
+    string t;
+    t.push_back(s[0]);
+
+    for (int i = 1; i < s.size(); i++)
+    {   
+        if (s[i] == lastchar) {
+            lastcharcnt++;
+            if (lastcharcnt < 3) t.push_back(s[i]);
+            else lastcharcnt--;
+        } else {
+            lastcharcnt = 1;
+            t.push_back(s[i]);
+        }
+        lastchar = s[i];
     }
-};
- 
-int main()
-{
-
-    Solution solution;
-
-
-    // vector<int> 
-    // vector<vector<int> 
-    // string s
-    // char c
-    // int k
-    // double d
-    // float f
-
-
-
-    auto result = solution.method();
-
-
-    // cout << result << endl;
-
-    // printArray(result);
-
-    // print2DArray(result);
-
-
-
+    return t;
+    
 }
+int main() {
+    string s = "lllllleleeetcoodddeee";
+    auto result = makeFancyString(s);
+    cout << result << endl;
+    // printArray(result);
+    // print2DArray(result);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -119,7 +127,6 @@ void print2DArray(const vector<vector<T>>& arr) {
     }
     cout << "]" << endl;
 }
-
 template <typename T>
 void printSet(const set<T>& s) {
     cout << "{";
@@ -129,7 +136,6 @@ void printSet(const set<T>& s) {
     }
     cout << "}" << endl;
 }
-
 template <typename T>
 void printUnorderedSet(const unordered_set<T>& s) {
     cout << "{";
@@ -139,7 +145,6 @@ void printUnorderedSet(const unordered_set<T>& s) {
     }
     cout << "}" << endl;
 }
-
 template <typename K, typename V>
 void printMap(const map<K, V>& m) {
     cout << "{";
@@ -149,7 +154,6 @@ void printMap(const map<K, V>& m) {
     }
     cout << "}" << endl;
 }
-
 template <typename K, typename V>
 void printUnorderedMap(const unordered_map<K, V>& m) {
     cout << "{";
@@ -163,9 +167,6 @@ template<typename K, typename V>
 void printPair(const pair<K, V>& p) {
     cout << "{" << p.first << ", " << p.second <<"}" << endl;
 }
-
-
-
 template <typename T>
 void printDeque(const deque<T>& dq) {
     cout << "Deque (front -> back): [";
